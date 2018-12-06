@@ -304,6 +304,34 @@ $resource->set('published', '1');
 $resource->save();
 }
 ```
+## Pack, unpack
+
+#### zip pack
+```
+$zippath = MODX_BASE_PATH . 'site.zip';
+$dirpath = MODX_BASE_PATH;
+
+if ($zipClass = $modx->loadClass('compression.xPDOZip', XPDO_CORE_PATH, true, true)) {
+    if ($zip = new $zipClass($modx, $zippath, array('create' => true, 'overwrite' => true))) {
+        @unlink($zippath);
+        $result = $zip->pack($dirpath);
+        print_r($result);
+    }
+}
+```
+#### zip unpack
+```
+$zippath = MODX_BASE_PATH . 'site.zip';
+$dirpath = MODX_BASE_PATH;
+
+if ($zipClass = $modx->loadClass('compression.xPDOZip', XPDO_CORE_PATH, true, true)) {
+    if ($zip = new $zipClass($modx, $zippath, array())) {
+        $result = $zip->unpack($dirpath);
+        print_r($result);
+    }
+}
+```
+
 ## XPDO 
 
 __getObject__  - get one object/table row  
