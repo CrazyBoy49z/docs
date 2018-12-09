@@ -18,7 +18,7 @@ serverctl( 'useradd', [
 
 ### usermod - меняет параметры юзера 
 ###### обязательные параметры: логин, пароль; не обязательные: квота, версия; 
-###### useradd "USERNAME" "PASSWORD" [ "QUOTA" ]
+###### usermod "USERNAME" "PASSWORD" [ "QUOTA" ]
     ``` 
 serverctl( 'usermod', [
            'USERNAME' => 'test',
