@@ -5,30 +5,32 @@ serverctl( 'userlst' )
 ```
 
 ### useradd - создаёт юзера 
-###### обязательные параметры: логин, пароль, квота не обязательные: версия;
-###### useradd < USERNAME > < PASSWORD > < QUOTA > [ < VERSION > ]
+###### обязательные параметры: логин, пароль, квота; не обязательные: версия;
+###### useradd "USERNAME" "PASSWORD" "QUOTA" [ "VERSION"]
 ``` 
 serverctl( 'useradd', [
            'USERNAME' => 'test',
            'PASSWORD' => 'test',
-           'QUOTA' => 100
+           'QUOTA' => 100,
+           'VERSION' => '2.7.0'
         ] ) 
 ```
 
 ### usermod - меняет параметры юзера 
-###### обязательные параметры: логин, пароль; не обязательные: квота; 
-###### useradd < USERNAME > < PASSWORD > [ < QUOTA > ]
+###### обязательные параметры: логин, пароль; не обязательные: квота, версия; 
+###### useradd "USERNAME" "PASSWORD" [ "QUOTA" ]  [ "VERSION"]
 ``` 
 serverctl( 'usermod', [
            'USERNAME' => 'test',
            'PASSWORD' => 'test',
-           'QUOTA' => 100
+           'QUOTA' => 100,
+           'VERSION' => '2.7.0'
         ] ) 
 ```
 
 ### userdel - убивает юзера 
 ###### обязательные параметры: логин; 
-###### userdel < USERNAME >
+###### userdel "USERNAME"
 ``` 
 serverctl( 'userdel', [
            'USERNAME' => 'test',
@@ -37,7 +39,7 @@ serverctl( 'userdel', [
 
 ### usercnf - чистит кеш, создаёт каталог с логами, если его нет и фиксит разрешения 
 ###### Нe обязательные параметры: логин; 
-###### usercnf [ < USERNAME > ]
+###### usercnf ["USERNAME"]
 ``` 
 serverctl( 'usercnf', [
            'USERNAME' => 'test',
@@ -46,7 +48,7 @@ serverctl( 'usercnf', [
 
 ### userbak - если не указан логин, то бекапит всех 
 ###### Нe обязательные параметры: логин; 
-###### userbak [ < USERNAME > ]
+###### userbak ["USERNAME"]
 ``` 
 serverctl( 'userbak', [
            'USERNAME' => 'test',
@@ -55,7 +57,7 @@ serverctl( 'userbak', [
 
 ### userres - восстанавливает бекап
 ###### обязательные параметры: логин, дата отката; 
-###### userres < USERNAME > < DATE >
+###### userres "USERNAME" "DATE"
 ``` 
 serverctl( 'userres', [
                 'USERNAME' => 'test',
@@ -64,11 +66,12 @@ serverctl( 'userres', [
 ```
 
 ### userupd - делает автоапгрейд modx
-###### обязательные параметры: логин; 
-###### userupd < USERNAME > [ <VERSION> ]
+###### обязательные параметры: логин; не обязательные: версия;
+###### userupd "USERNAME" [ "VERSION" ]
 ``` 
 serverctl( 'userupd', [
                 'USERNAME' => 'test',
+                'VERSION' => '2.7.0'
         ] ) 
 ```
 
@@ -78,18 +81,9 @@ serverctl( 'userupd', [
 serverctl( 'hostlst') 
 ```
 
-### userupd - делает автоапгрейд modx
-###### обязательные параметры: логин; 
-###### userupd < USERNAME >
-``` 
-serverctl( 'userupd', [
-                'USERNAME' => 'test',
-        ] ) 
-```
-
 ### hostadd - добавляет домен юзеру
 ###### обязательные параметры: логин, домен; 
-###### hostadd < USERNAME > < HOSTNAME >
+###### hostadd "USERNAME" "HOSTNAME"
 ``` 
 serverctl( 'hostadd', [
                 'USERNAME' => 'test',
@@ -99,7 +93,7 @@ serverctl( 'hostadd', [
 
 ### hostdel -  убивает домен
 ###### обязательные параметры: домен; 
-###### hostdel < HOSTNAME >
+###### hostdel "HOSTNAME"
 ``` 
 serverctl( 'hostdel', [
                 'HOSTNAME' => 'test',
@@ -108,7 +102,7 @@ serverctl( 'hostdel', [
 
 ### hostena -  включает домен
 ###### обязательные параметры: домен; 
-###### hostena < HOSTNAME >
+###### hostena "HOSTNAME"
 ``` 
 serverctl( 'hostena', [
                 'HOSTNAME' => 'test',
@@ -117,7 +111,7 @@ serverctl( 'hostena', [
 
 ### hostdis -  отключает домен
 ###### обязательные параметры: домен; 
-###### hostdis < HOSTNAME >
+###### hostdis "HOSTNAME"
 ``` 
 serverctl( 'hostdis', [
                 'HOSTNAME' => 'test',
@@ -125,8 +119,9 @@ serverctl( 'hostdis', [
 ```
 
 ### hostcnf - делает регенерацию конфигов
+###### Нужно вызывать, если в папку пользователя добавили свой SSL сертификат. домен.crt - сертификат домен.key - ключ
 ###### не обязательные параметры: домен; 
-###### hostcnf [ < HOSTNAME > ]
+###### hostcnf [ "HOSTNAME" ]
 ``` 
 serverctl( 'hostcnf', [
                 'HOSTNAME' => 'test',
